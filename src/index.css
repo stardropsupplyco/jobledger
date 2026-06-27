@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1C1A17;
+  --color-surface: #252220;
+  --color-surface-raised: #2D2925;
+  --color-rule: #3A352F;
+  --color-rule-strong: #4A4339;
+  --color-chalk: #F2EDE4;
+  --color-pencil: #9A9085;
+  --color-pencil-dim: #6B6359;
+  --color-copper: #D97A3F;
+  --color-copper-dim: #B5612E;
+  --color-sage: #7C9A6B;
+  --color-sage-dim: #5F7A50;
+  --color-brick: #B5564A;
+  --color-brick-dim: #8F4138;
+  --color-flag-blue: #5B7C99;
+
+  --font-display: "Archivo Expanded", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html, body {
+  background-color: var(--color-ink);
+  color: var(--color-chalk);
+  font-family: var(--font-body);
+}
+
+* {
+  border-color: var(--color-rule);
+}
+
+::selection {
+  background-color: var(--color-copper);
+  color: var(--color-ink);
+}
+
+.ledger-rule {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 39px,
+    var(--color-rule) 39px,
+    var(--color-rule) 40px
+  );
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+@keyframes stamp-in {
+  0% { opacity: 0; transform: scale(1.15) rotate(-2deg); }
+  60% { opacity: 1; transform: scale(0.97) rotate(0.5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.stamp-in {
+  animation: stamp-in 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-in { animation: none; }
+  * { transition: none !important; }
+}
+
+input, select, textarea, button {
+  font-family: var(--font-body);
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: var(--color-rule-strong); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-pencil-dim); }
